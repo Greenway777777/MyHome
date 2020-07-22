@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.livre.myhome.dao.UserDao">
+    <select id="findAllUser" resultType="com.livre.myhome.pojo.User">
+        select u.id,u.username,u.password,u.salt from user u ;
+    </select>
+    <select id="findByUsername" resultType="com.livre.myhome.pojo.User">
+        select u.id,u.username,u.password,u.salt from user u where u.username=#{username};
+    </select>
+    <select id="findByUsernameAndPassword" resultType="com.livre.myhome.pojo.User">
+        select * from user where username=#{username} and password=#{password};
+    </select>
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.livre.myhome.pojo.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                id,
+            </if>
+            <if test="username != null and username != ''">
+                username,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="salt != null and salt != ''">
+                salt,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                #{id},
+            </if>
+            <if test="username != null and username != ''">
+                #{username},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="salt != null and salt != ''">
+                #{salt},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateUserById" parameterType="com.livre.myhome.pojo.User">
+        update user set
+        <trim suffixOverrides=",">
+            <if test="id != null and id != ''">
+                id=#{id},
+            </if>
+            <if test="username != null and username != ''">
+                username=#{username},
+            </if>
+            <if test="password != null and password != ''">
+                password=#{password},
+            </if>
+            <if test="salt != null and salt != ''">
+                salt=#{salt},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+    <delete id="deleteUserById" parameterType="com.livre.myhome.pojo.User">
+        delete from user where id=#{id}
+    </delete>
+</mapper>
