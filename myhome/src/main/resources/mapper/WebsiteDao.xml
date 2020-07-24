@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.livre.myhome.dao.WebsiteDao">
+    <select id="findAll" resultType="com.livre.myhome.pojo.Website">
+        select * from website;
+    </select>
+    <select id="findById" resultType="com.livre.myhome.pojo.Website">
+        select * from website where id=#{id} limit 1;
+    </select>
+    <insert id="addWebsite" useGeneratedKeys="true" parameterType="com.livre.myhome.pojo.Website">
+        insert into website
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                id,
+            </if>
+            <if test="name != null and name != ''">
+                name,
+            </if>
+            <if test="icon != null and icon != ''">
+                icon,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                #{id},
+            </if>
+            <if test="name != null and name != ''">
+                #{name},
+            </if>
+            <if test="icon != null and icon != ''">
+                #{icon},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByName" >
+        update website set
+        <trim suffixOverrides=",">
+            <if test="id != null and id != ''">
+                id=#{id},
+            </if>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="icon != null and icon != ''">
+                icon=#{icon},
+            </if>
+        </trim>
+        where name=#{name}
+    </update>
+    <delete id="deleteByName" >
+        delete from website where name=#{name}
+    </delete>
+</mapper>

@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
 import AppIndex from '../components/home/AppIndex'
 import Login from '../components/Login'
+import Home from '../components/Home'
+import BankIndex from '../components/bank/BankIndex'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history', // hash模式URL带有#
   routes: [
     {
       path: '/login',
@@ -15,14 +17,29 @@ export default new Router({
       component: Login
     },
     {
-      path: '/index',
-      name: 'AppIndex',
-      component: AppIndex
-    },
-    {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Home',
+      component: Home,
+      // home页面并不需要被访问
+      redirect: '/index',
+      children: [
+        {
+          path: '/index',
+          name: 'AppIndex',
+          component: AppIndex,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/bank',
+          name: 'BankIndex',
+          component: BankIndex,
+          meta: {
+            requireAuth: true
+          }
+        }
+      ]
     }
   ]
 })

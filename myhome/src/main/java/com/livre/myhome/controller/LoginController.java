@@ -20,18 +20,15 @@ public class LoginController {
     UserService userService;
 
     @CrossOrigin
-    @PostMapping(value = "api/login")
+    @PostMapping(value = "/api/login")
     public Result login(@RequestBody User requestUser){
         String username = requestUser.getUsername();
         username = HtmlUtils.htmlEscape(username);
-
-        System.out.println(username);
 
         User user=userService.getByUsernameAndPassword(username,requestUser.getPassword());
 
         if(null == user){
             String message="账号密码错误";
-            System.out.println("test");
             return new Result(400);
         } else{
             return new Result(200);
