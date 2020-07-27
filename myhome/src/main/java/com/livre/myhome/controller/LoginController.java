@@ -31,7 +31,7 @@ public class LoginController {
 
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, requestUser.getPassword());
-
+        usernamePasswordToken.setRememberMe(true); // rememberMe
         try {
             subject.login(usernamePasswordToken); // 验证token令牌
             return ResultFactory.buildSuccessResult(username);

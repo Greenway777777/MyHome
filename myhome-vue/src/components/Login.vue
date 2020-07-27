@@ -41,12 +41,16 @@ export default {
           username: this.loginForm.username,
           password: this.loginForm.password
         })
-        .then(successResponse => {
-          if (successResponse.data.code === 200) {
-            // var data = this.loginForm
-            _this.$store.commit('login', _this.loginForm)
-            var path = this.$route.query.redirect
-            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+        .then(resp => {
+          if (resp.data.code === 200) {
+            var data = resp.data.result
+            _this.$store.commit('login', data)
+            var path = _this.$route.query.redirect
+            _this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+          } else {
+            this.$alert(resp.data.message, '提示', {
+              confirmButtonText: '确定'
+            })
           }
         })
         .catch(failResponse => {

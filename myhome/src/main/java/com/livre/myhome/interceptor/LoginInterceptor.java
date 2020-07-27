@@ -42,7 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor { // 拦截器
 
         Subject subject = SecurityUtils.getSubject();
         // 使用 shiro 验证
-        if (!subject.isAuthenticated()) {
+        if (!subject.isAuthenticated() && !subject.isRemembered()) {
             return false;
         }
         return true;
