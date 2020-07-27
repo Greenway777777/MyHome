@@ -2,31 +2,29 @@
   <div>
     <el-row style="height: 840px;">
       <search-bar @onSearch="searchResult" ref="searchBar"></search-bar>
-      <el-tooltip effect="dark" placement="right"
-                  v-for="item in banks.slice((currentPage-1)*pagesize,currentPage*pagesize)"
-                  :key="item.id">
-        <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{item.title}}</p>
-        <p slot="content" style="font-size: 13px;margin-bottom: 6px">
-          <span>{{item.author}}</span> /
-          <span>{{item.date}}</span> /
-          <span>{{item.press}}</span>
-        </p>
-        <p slot="content" style="width: 300px" class="abstract">{{item.abs}}</p>
-        <el-card style="width: 135px;margin-bottom: 20px;height: 277px;float: left;margin-right: 15px" class="book"
-                 bodyStyle="padding:10px" shadow="hover">
-          <div class="cover" @click="editBook(item)">
-            <img :src="item.cover" alt="封面">
-          </div>
+<!--      <el-tooltip effect="dark" placement="right"-->
+<!--                  v-for="item in banks.slice((currentPage-1)*pagesize,currentPage*pagesize)"-->
+<!--                  :key="item.id">-->
+<!--        <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{item.title}}</p>-->
+<!--        <p slot="content" style="font-size: 13px;margin-bottom: 6px">-->
+<!--          <span>{{item.answer}}</span>-->
+<!--        </p>-->
+<!--        <p slot="content" style="width: 300px" class="abstract">{{item.abs}}</p>-->
+        <el-card style="width: 100%;margin-bottom: 20px;height: auto;float: left;margin-right: 15px" class="bank"
+                 bodyStyle="padding:10px" shadow="hover" v-for="item in banks.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+                 :key="item.id">
+<!--          <div class="cover" @click="editBook(item)">-->
+<!--          </div>-->
           <div class="info">
             <div class="title">
-              <a href="">{{item.title}}</a>
+              {{item.title}}
             </div>
-            <i class="el-icon-delete" @click="deleteBook(item.id)"></i>
+<!--            <i class="el-icon-delete" @click="deleteBook(item.id)"></i>-->
           </div>
-          <div class="author">{{item.author}}</div>
+          <div class="author">{{item.answer}}</div>
         </el-card>
-      </el-tooltip>
-      <edit-form @onSubmit="loadBooks()" ref="edit"></edit-form>
+<!--      </el-tooltip>-->
+<!--      <edit-form @onSubmit="loadBanks()" ref="edit"></edit-form>-->
     </el-row>
     <el-row>
       <el-pagination
@@ -48,27 +46,32 @@ export default {
     return {
       banks: [
         {
-          cover: 'https://i.loli.net/2019/04/10/5cada7e73d601.jpg',
-          title: '三体',
-          author: '刘慈欣',
-          date: '2019-05-05',
-          press: '重庆出版社',
-          abs: '*****如火如荼进行的同时。军方探寻外星文明的绝秘计划“红岸工程”取得了突破性进展。但在按下发射键的那一刻，历经劫难的叶文洁没有意识到，她彻底改变了人类的命运。地球文明向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰……'
+          id: '1',
+          title: 'Java有哪些数据类型?',
+          answer: '基本数据类型:数值型(整数类型(byte,short,int,long),浮点类型(float,double)),字符型(char),布尔型(boolean);' +
+            '引用数据类型:' +
+            '类(class)' +
+            '接口(interface)' +
+            '数组([])',
+          category: {
+            id: '1',
+            name: 'JavaSE'
+          }
         }
       ],
       currentPage: 1,
-      pagesize: 17
+      pagesize: 6
     }
   },
   mounted: function () {
-    this.loadBooks()
+    this.loadBanks()
   },
   methods: {
-    loadBooks () {
+    loadBanks () {
       var _this = this
-      this.$axios.get('/books').then(resp => {
+      this.$axios.get('/banks').then(resp => {
         if (resp && resp.status === 200) {
-          _this.books = resp.data
+          _this.banks = resp.data.result
         }
       })
     },
@@ -143,14 +146,14 @@ export default {
   }
 
   .title {
-    font-size: 14px;
+    font-size: 24px;
     text-align: left;
   }
 
   .author {
     color: #333;
-    width: 102px;
-    font-size: 13px;
+    width: auto;
+    font-size: 18px;
     margin-bottom: 6px;
     text-align: left;
   }

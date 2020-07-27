@@ -34,8 +34,8 @@ export default {
     return {
       list: [{
         id: 1,
-        name: '网站名称',
-        url: '网站url地址',
+        name: '百度',
+        url: 'https://www.baidu.com/',
         icon: '去看看'
       }]
     }

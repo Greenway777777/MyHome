@@ -1,6 +1,6 @@
 <template>
     <div class="quick-nav">
-      <a href="https://www.baidu.com" target="_blank">
+      <a href="https://github.com/Greenway777777/MyHome" target="_blank">
         <img src="../../assets/img/icon/icon5.png" alt="" class="readme">
       </a>
     </div>

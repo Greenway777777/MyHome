@@ -1,8 +1,8 @@
 <template>
-  <body id="poster">
+  <body id="paper">
   <el-form class="login-container" label-position="left"
-           label-width="0px">
-    <h3 class="login_title">系统登录</h3>
+           label-width="0px" v-loading="loading">
+    <h3 class="login_title">用户注册</h3>
     <el-form-item>
       <el-input type="text" v-model="loginForm.username"
                 auto-complete="off" placeholder="账号"></el-input>
@@ -10,54 +10,52 @@
     <el-form-item>
       <el-input type="password" v-model="loginForm.password"
                 auto-complete="off" placeholder="密码"></el-input>
-      <el-checkbox class="login_remember"
-                   label-position="left"><span style="color: #505458">记住密码</span></el-checkbox>
     </el-form-item>
     <el-form-item style="width: 100%">
-      <el-button type="primary" style="width: 100%;background: #FF4500;border: none" v-on:click="login">登录</el-button>
+      <el-button type="primary" style="width: 100%;background: #FF4500;border: none" v-on:click="register">注册</el-button>
     </el-form-item>
   </el-form>
   </body>
 </template>
-
 <script>
-
-export default {
-  name: 'Login',
+export default{
   data () {
     return {
+      checked: true,
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        username: '',
+        password: ''
       },
-      responseResult: []
+      loading: false
     }
   },
   methods: {
-    login () {
+    register () {
       var _this = this
       this.$axios
-        .post('/login', {
+        .post('/register', {
           username: this.loginForm.username,
           password: this.loginForm.password
         })
-        .then(successResponse => {
-          if (successResponse.data.code === 200) {
-            // var data = this.loginForm
-            _this.$store.commit('login', _this.loginForm)
-            var path = this.$route.query.redirect
-            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+        .then(resp => {
+          if (resp.data.code === 200) {
+            this.$alert('注册成功', '提示', {
+              confirmButtonText: '确定'
+            })
+            _this.$router.replace('/login')
+          } else {
+            this.$alert(resp.data.message, '提示', {
+              confirmButtonText: '确定'
+            })
           }
         })
-        .catch(failResponse => {
-        })
+        .catch(failResponse => {})
     }
   }
 }
 </script>
-
 <style>
-  #poster {
+  #paper {
     background:url("../assets/eva.jpg") no-repeat;
     background-position: center;
     height: 100%;
@@ -83,9 +81,4 @@ export default {
     text-align: center;
     color: #505458;
   }
-  .login_remember {
-    margin: 0px 0px 5px 0px;
-    text-align: left;
-  }
-
 </style>
