@@ -1,24 +1,10 @@
 package com.livre.myhome.dao;
 
 import com.livre.myhome.pojo.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface UserDao extends JpaRepository<User,Integer> {
+    User findByUsername(String username);
 
-@Mapper
-public interface UserDao {
-
-    List<User> findAllUser();
-
-    void addUser(User user);
-
-    void updateUserById(User user);
-
-    void deleteUserById(User user);
-
-    User findByUsernameAndPassword(@Param("username") String username, @Param("password")String password);
-
-    User findByUsername(@Param("username")String username);
-
+    User getByUsernameAndPassword(String username,String password);
 }

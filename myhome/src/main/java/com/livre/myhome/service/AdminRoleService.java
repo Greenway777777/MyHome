@@ -49,8 +49,9 @@ public class AdminRoleService {
         adminRoleDao.save(adminRole);
     }
 
+    // 根据用户名查询角色信息 用于查询用户是绑定角色信息
     public List<AdminRole> listRolesByUser(String username) {
-        int uid = userService.getByUsername(username).getId();
+        int uid = userService.findByUsername(username).getId();
         List<Integer> rids = adminUserRoleService.listAllByUid(uid)
                 .stream().map(AdminUserRole::getRid).collect(Collectors.toList());
         return adminRoleDao.findAllById(rids);

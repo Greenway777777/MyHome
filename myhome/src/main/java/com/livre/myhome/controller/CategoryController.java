@@ -17,6 +17,6 @@ public class CategoryController {
 
     @RequestMapping(value = "/api/category",method = RequestMethod.GET)
     public Category queryById(@RequestParam("id") int id){
-        return categoryService.getById(id);
+        return categoryService.get(id);
     }
 }

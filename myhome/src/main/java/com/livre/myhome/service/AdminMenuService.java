@@ -30,7 +30,7 @@ public class AdminMenuService {
     public List<AdminMenu> getMenusByCurrentUser() {
         // Get current user in DB.
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        User user = userService.getByUsername(username);
+        User user = userService.findByUsername(username);
 
         // Get roles' ids of current user.
         List<Integer> rids = adminUserRoleService.listAllByUid(user.getId())

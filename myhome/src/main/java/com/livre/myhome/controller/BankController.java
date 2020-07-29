@@ -21,6 +21,6 @@ public class BankController {
     @CrossOrigin
     @RequestMapping(value = "/api/banks",method = RequestMethod.GET)
     public Result queryAll(){
-        return ResultFactory.buildSuccessResult(bankService.getAll());
+        return ResultFactory.buildSuccessResult(bankService.list());
     }
 }

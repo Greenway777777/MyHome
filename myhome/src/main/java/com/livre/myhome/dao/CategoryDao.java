@@ -1,10 +1,7 @@
 package com.livre.myhome.dao;
 
 import com.livre.myhome.pojo.Category;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Mapper
-public interface CategoryDao {
-    Category findById(@Param("id") int id);
+public interface CategoryDao extends JpaRepository<Category, Integer> {
 }

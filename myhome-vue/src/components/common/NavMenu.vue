@@ -24,7 +24,7 @@ export default {
     return {
       navList: [
         {name: '/index', navItem: '首页'},
-        {name: '/note', navItem: '笔记本'},
+        {name: '/blogPage', navItem: '博客'},
         {name: '/bank', navItem: '题库'},
         {name: '/admin', navItem: '个人中心'}
       ]

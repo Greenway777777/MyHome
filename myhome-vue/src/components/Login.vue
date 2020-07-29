@@ -1,20 +1,21 @@
 <template>
   <body id="poster">
-  <el-form class="login-container" label-position="left"
-           label-width="0px">
+  <el-form :model="loginForm" :rules="rules" class="login-container" label-position="left"
+           label-width="0px" v-loading="loading">
     <h3 class="login_title">系统登录</h3>
-    <el-form-item>
+    <el-form-item prop="username">
       <el-input type="text" v-model="loginForm.username"
                 auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
-    <el-form-item>
+    <el-form-item prop="password">
       <el-input type="password" v-model="loginForm.password"
                 auto-complete="off" placeholder="密码"></el-input>
-      <el-checkbox class="login_remember"
-                   label-position="left"><span style="color: #505458">记住密码</span></el-checkbox>
     </el-form-item>
+    <el-checkbox class="login_remember"
+                 label-position="left"><span style="color: #505458">记住密码</span></el-checkbox>
     <el-form-item style="width: 100%">
-      <el-button type="primary" style="width: 100%;background: #FF4500;border: none" v-on:click="login">登录</el-button>
+      <el-button type="primary" style="width: 40%;background: #FF4500;border: none" v-on:click="login">登录</el-button>
+      <router-link to="register"><el-button type="primary" style="width: 40%;background: #FF4500;border: none">注册</el-button></router-link>
     </el-form-item>
   </el-form>
   </body>
@@ -26,11 +27,16 @@ export default {
   name: 'Login',
   data () {
     return {
+      rules: {
+        username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
+        password: [{required: true, message: '密码不能为空', trigger: 'blur'}]
+      },
+      checked: true,
       loginForm: {
         username: 'admin',
-        password: '123456'
+        password: '123'
       },
-      responseResult: []
+      loading: false
     }
   },
   methods: {
@@ -53,8 +59,7 @@ export default {
             })
           }
         })
-        .catch(failResponse => {
-        })
+        .catch(failResponse => {})
     }
   }
 }
@@ -62,7 +67,7 @@ export default {
 
 <style>
   #poster {
-    background:url("../assets/eva.jpg") no-repeat;
+    background:url("../../static/img/eva.jpg") no-repeat;
     background-position: center;
     height: 100%;
     width: 100%;

@@ -1,10 +1,23 @@
 package com.livre.myhome.pojo;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "bank")
+@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
 public class Bank {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     private String title;
     private String answer;
 
+    @ManyToOne
+    @JoinColumn(name="cid")
     private Category category;
 
     public int getId() {

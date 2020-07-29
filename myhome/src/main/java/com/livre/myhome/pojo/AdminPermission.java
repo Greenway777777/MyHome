@@ -15,17 +15,17 @@ public class AdminPermission {
     private int id;
 
     /**
-     * Permission name;
+     * 权限名称;
      */
     private String name;
 
     /**
-     * Permission's description(in Chinese)
+     * 权限功能描述
      */
     private String desc_;
 
     /**
-     * The path which triggers permission check.
+     * 权限对应接口url
      */
     private String url;
 

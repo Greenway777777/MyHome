@@ -17,22 +17,22 @@ public class AdminMenu {
     /**
      * Menu access path.
      */
-    private String routerPath;
+    private String path;
 
     /**
      * Menu name.
      */
-    private String routerName;
+    private String name;
 
     /**
      * Menu name in Chinese.
      */
-    private String menuNameZh;
+    private String nameZh;
 
     /**
      * Menu icon class(use element-ui icons).
      */
-    private String menuIconCls;
+    private String iconCls;
 
     /**
      * Front-end component name corresponding to menu.
@@ -58,36 +58,36 @@ public class AdminMenu {
         this.id = id;
     }
 
-    public String getRouterPath() {
-        return routerPath;
+    public String getPath() {
+        return path;
     }
 
-    public void setRouterPath(String routerPath) {
-        this.routerPath = routerPath;
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    public String getRouterName() {
-        return routerName;
+    public String getName() {
+        return name;
     }
 
-    public void setRouterName(String routerName) {
-        this.routerName = routerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getMenuNameZh() {
-        return menuNameZh;
+    public String getNameZh() {
+        return nameZh;
     }
 
-    public void setMenuNameZh(String menuNameZh) {
-        this.menuNameZh = menuNameZh;
+    public void setNameZh(String nameZh) {
+        this.nameZh = nameZh;
     }
 
-    public String getMenuIconCls() {
-        return menuIconCls;
+    public String getIconCls() {
+        return iconCls;
     }
 
-    public void setMenuIconCls(String menuIconCls) {
-        this.menuIconCls = menuIconCls;
+    public void setIconCls(String iconCls) {
+        this.iconCls = iconCls;
     }
 
     public String getComponent() {
