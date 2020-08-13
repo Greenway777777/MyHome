@@ -1,9 +1,15 @@
+<!--
+ * @FileDescription 底部信息栏组件
+ * @Author livre
+ -->
 <template>
   <div class="footer">
     <div style="border-top:1px #1F1F1F solid;">
       <p class="alt" style="color:#999; line-height:0 ;">&copy; 版权所有：Livre &nbsp;
         <span>技术支持：</span>
-        <a href="" target="_blank" style="color:#999;">Livre</a>
+        <a href="" target="_blank" style="color:#999;">Livre &nbsp;</a>
+        <span>联系我：</span>
+        <a href="" target="_blank" style="color:#999;">068-18319792414</a>
       </p>
     </div>
   </div>
@@ -37,6 +43,7 @@ export default {
 
   .footer {
     background: #2b2e33;
+    margin-bottom: 40px;
   }
 
   .footer .alt {

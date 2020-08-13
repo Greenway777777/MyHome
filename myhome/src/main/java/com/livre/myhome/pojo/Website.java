@@ -1,6 +1,16 @@
 package com.livre.myhome.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "website")
+@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
 public class Website {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     private String name;
     private String url;

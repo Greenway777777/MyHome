@@ -1,3 +1,9 @@
+<!--
+ * @FileDescription 轮播卡片组件
+ * @Author livre
+ * @Date 2020年2月4日
+ * @LastEditTime 2020年7月31日
+ -->
 <template>
   <el-card class="card-carousel">
   <el-carousel  class="push" :interval="4000" arrow="always">
@@ -52,6 +58,9 @@ export default {
   name: 'Carousel',
   data: function () {
     return {
+      /**
+       * @description 轮播卡片的数据
+       */
       items: [{
         id: 1,
         title: 'spring',

@@ -1,3 +1,7 @@
+<!--
+ * @FileDescription 博客页面导航组件
+ * @Author livre
+ -->
 <template>
     <div>
       <el-row class="tac">

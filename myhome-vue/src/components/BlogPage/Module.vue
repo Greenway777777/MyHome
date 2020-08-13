@@ -1,3 +1,7 @@
+<!--
+ * @FileDescription Module组件
+ * @Author livre
+ -->
 <template>
     <div>
       <a href="/editor" class="module">

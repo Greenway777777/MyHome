@@ -6,18 +6,13 @@ import Login from '../components/Login'
 import Home from '../components/Home'
 import BankIndex from '../components/bank/BankIndex'
 import Register from '../components/Register'
+import ChatIndex from '../components/chat/ChatIndex'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history', // hash模式URL带有#
+  mode: 'history', // 修改路由模式为history,hash模式的URL中带有#
   routes: [
-    {
-      path: '/',
-      name: 'Default',
-      redirect: '/home',
-      component: Home
-    },
     {
       path: '/login',
       name: 'Login',
@@ -52,6 +47,14 @@ export default new Router({
           }
         },
         {
+          path: '/chat',
+          name: 'ChatIndex',
+          component: ChatIndex,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
           path: '/blogPage',
           name: 'BlogPage',
           component: () => import('../components/BlogPage/Blog')
@@ -77,17 +80,17 @@ export default new Router({
       component: () => import('../components/admin/AdminIndex'),
       meta: {
         requireAuth: true
-      },
-      children: [
-        {
-          path: '/admin/dashboard',
-          name: 'Dashboard',
-          component: () => import('../components/admin/dashboard/admin/index'),
-          meta: {
-            requireAuth: true
-          }
-        }
-      ]
+      }
+      // children: [
+      //   {
+      //     path: '/admin/dashboard',
+      //     name: 'Dashboard',
+      //     component: () => import('../components/admin/dashboard/admin/index'),
+      //     meta: {
+      //       requireAuth: true
+      //     }
+      //   }
+      // ]
     },
     {
       path: '*',
@@ -98,14 +101,8 @@ export default new Router({
 
 // 用于创建默认路由
 export const createRouter = routes => new Router({
-  mode: 'history', // hash模式URL带有#
+  mode: 'history', // 修改路由模式为history,hash模式的URL中带有#
   routes: [
-    {
-      path: '/',
-      name: 'Default',
-      redirect: '/home',
-      component: Home
-    },
     {
       path: '/login',
       name: 'Login',
@@ -140,6 +137,14 @@ export const createRouter = routes => new Router({
           }
         },
         {
+          path: '/chat',
+          name: 'ChatIndex',
+          component: ChatIndex,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
           path: '/blogPage',
           name: 'BlogPage',
           component: () => import('../components/BlogPage/Blog')
@@ -165,17 +170,17 @@ export const createRouter = routes => new Router({
       component: () => import('../components/admin/AdminIndex'),
       meta: {
         requireAuth: true
-      },
-      children: [
-        {
-          path: '/admin/dashboard',
-          name: 'Dashboard',
-          component: () => import('../components/admin/dashboard/admin/index'),
-          meta: {
-            requireAuth: true
-          }
-        }
-      ]
+      }
+      // children: [
+      //   {
+      //     path: '/admin/dashboard',
+      //     name: 'Dashboard',
+      //     component: () => import('../components/admin/dashboard/admin/index'),
+      //     meta: {
+      //       requireAuth: true
+      //     }
+      //   }
+      // ]
     },
     {
       path: '*',

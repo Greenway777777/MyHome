@@ -1,3 +1,7 @@
+<!--
+ * @FileDescription 博客组件
+ * @Author livre
+ -->
 <template>
   <div style="margin-top: 40px">
     <!--<el-button @click="addBlog()">添加博客</el-button>-->
@@ -33,15 +37,28 @@ export default {
   name: 'Blog',
   data () {
     return {
+      /**
+       * @description blogs绑定博客数据
+       * */
       blogs: [],
+      /**
+       * @description pageSize页面大小
+       */
       pageSize: 4,
       total: 0
     }
   },
   mounted () {
+    /**
+     * @description 钩子函数,执行this.loadBlogs()方法 加载博客信息
+     */
     this.loadBlogs()
   },
   methods: {
+    /**
+     * @description 加载博客信息方法,通过axios的get方法发送请求
+     * @return 返回数据到this.blogs中
+     */
     loadBlogs () {
       var _this = this
       this.$axios.get('/blog/' + this.pageSize + '/1').then(resp => {
@@ -51,6 +68,11 @@ export default {
         }
       })
     },
+    /**
+     * @description 登录按钮点击方法.通过axios发送post请求,url为'/login'
+     * @params {String} loginForm
+     * @return 返回数据到$store保存
+     */
     handleCurrentChange (page) {
       var _this = this
       this.$axios.get('/blog/' + this.pageSize + '/' + page).then(resp => {

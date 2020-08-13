@@ -1,14 +1,18 @@
+<!--
+ * @FileDescription 注册界面
+ * @Author livre
+ -->
 <template>
   <body id="paper">
   <el-form class="login-container" label-position="left"
            label-width="0px" v-loading="loading">
     <h3 class="login_title">用户注册</h3>
     <el-form-item>
-      <el-input type="text" v-model="loginForm.username"
+      <el-input type="text" v-model="registerForm.username"
                 auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-input type="password" v-model="loginForm.password"
+      <el-input type="password" v-model="registerForm.password"
                 auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
     <el-form-item style="width: 100%">
@@ -21,21 +25,39 @@
 export default{
   data () {
     return {
-      checked: true,
-      loginForm: {
+      /**
+       * @description 注册界面表单信息 用户名+密码
+       */
+      registerForm: {
         username: '',
-        password: ''
+        password: '',
+        name: '',
+        phone: '',
+        email: '',
+        enabled: ''
       },
+      /**
+       * @description v-loading加载
+       */
       loading: false
     }
   },
   methods: {
+    /**
+     * @description 注册按钮点击方法.通过axios发送post请求,url为'/register'
+     * @params {String} registerForm
+     * @return 返回成功状态码200弹出确认框,点击确认自动跳转到登录页面
+     */
     register () {
       var _this = this
       this.$axios
         .post('/register', {
-          username: this.loginForm.username,
-          password: this.loginForm.password
+          username: this.registerForm.username,
+          password: this.registerForm.password,
+          name: '',
+          phone: '',
+          email: '',
+          enabled: ''
         })
         .then(resp => {
           if (resp.data.code === 200) {

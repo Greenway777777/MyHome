@@ -8,6 +8,8 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  favicon:
+      enabled: false
 mybatis:
   mapper-locations: mapper/*.xml
 ## Mybatis配置

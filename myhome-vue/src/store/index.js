@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex from 'vuex' // 引入vuex模块
 
 Vue.use(Vuex)
-export default new Vuex.Store({
+export default new Vuex.Store({ // 管理状态变量和方法
   state: {
     username: window.localStorage.getItem('username') == null ? '' : JSON.parse(window.localStorage.getItem('username' || '[]')),
     adminMenus: []
